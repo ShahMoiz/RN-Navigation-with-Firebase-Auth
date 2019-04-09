@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "1096083622572",
+    "firebase_url": "https://rnnavwithfirebase.firebaseio.com",
+    "project_id": "rnnavwithfirebase",
+    "storage_bucket": "rnnavwithfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096083622572:android:af3480b105f875fb",
+        "android_client_info": {
+          "package_name": "com.rn_navigation_with_firebase_auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8N6_MbxaHy_NriwwqGYDuLYYiHnmOY_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096083622572-1btnk8n6bevuuqtd9qvb0993gg4hfd13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
