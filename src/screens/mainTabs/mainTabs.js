@@ -10,4 +10,4 @@ const goHome =() => {
         }
     })
 }
-export default goHome;
+export default goHome; 
