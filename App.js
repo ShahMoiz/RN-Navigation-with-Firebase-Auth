@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import authScreen from './src/screens/authScreen/authScreen'
 import ProtectedScreen from './src/screens/mainTabs/protectedScreen/protectedScreen';
+import firebase from 'react-native-firebase'
 export default class App extends Component{
 
   signIn = () => {
@@ -12,8 +13,15 @@ export default class App extends Component{
     authScreen('signUp','signIn');
   }
   goToProtected = async () => {
-    // await 
-    ProtectedScreen()
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){
+        ProtectedScreen()
+      }
+      else {
+        authScreen('signUp','signIn');
+      } 
+    })
+    // ProtectedScreen()
   }
   render(){
     return(

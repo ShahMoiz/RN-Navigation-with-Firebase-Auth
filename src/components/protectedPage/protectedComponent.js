@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import { View, Text, Button, AsyncStorage, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Navigation } from 'react-native-navigation';
-
+import firebase from 'react-native-firebase'
 import { USER_ID } from '../../../config'
+import goHome from '../../screens/mainTabs/mainTabs';
+// import console = require('console');
 
 export default class ProtectedComponent extends Component {
+    state = {
+        errorMesage: ''
+    }
     signout = () => {
         //  await user = AsyncStorage.removeItem(USER_ID);
-        alert('signOut')
+        firebase.auth().signOut().then(() => {
+            goHome()
+        }).catch(err => {
+            console.log("Error Code", err.code);
+            console.log("Error Message", err.message);
+            this.setState({errorMesage:  err.message})
+        })
     }
     render(){
         return(
@@ -23,6 +34,13 @@ export default class ProtectedComponent extends Component {
                         title="sign Out"
                         onPress={this.signout}
                     />
+                </View>
+                <View>
+                    <Text>
+                        {
+                            this.state.errorMesage
+                        }
+                    </Text>
                 </View>
             </View>
         )

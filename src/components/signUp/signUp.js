@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import  firebase from 'react-native-firebase';
+import authScreen from '../../screens/authScreen/authScreen';
 // import console = require('console');
 class SignUp extends Component {
     state = {
-        username: '',
+        errorMassage: '',
         password: '',
         email: ''
     }
     signUp = () => {
-        console.log(this.state.username, this.state.password, this.state.email)
+        const email = this.state.email;
+        const pass = this.state.password;
+        console.log("email", email)
+        console.log("password", pass)
+        firebase.auth().createUserWithEmailAndPassword(email, pass).then(() => {
+            authScreen('signIn', 'signUp')
+        }).catch(err => {
+            console.log("SignUp Error Code", err.code);
+            console.log("SignUp Error Name", err.message);
+            this.setState({errorMassage: err.message})
+        })
+        // console.log(this.state.username, this.state.password, this.state.email)
     }
     render() {
         return (
             <View style={styles.container}>
-                <TextInput 
-                    placeholder="Enter your Name"
-                    onChangeText={val => this.setState({username: val})}
-                />
                 
                 <TextInput 
                     placeholder="Enter your email"
@@ -31,6 +40,10 @@ class SignUp extends Component {
                     title="Sign Up"
                     onPress={this.signUp}
                 />
+                <View>
+                    <Text>
+                    {this.state.errorMassage}</Text>
+                </View>
             </View>
         )
     }

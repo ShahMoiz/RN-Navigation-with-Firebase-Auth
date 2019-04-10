@@ -3,25 +3,36 @@ import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation'
 // import console = require('console');
 // import console = require('console');
+import firebase from 'react-native-firebase'
+import goHome from '../../screens/mainTabs/mainTabs';
+// import console = require('console');
 class SignIn extends Component {
     constructor(props){
         super(props);
         this.state = {
-            usernmae: '',
-            password: ''
+            email: '',
+            password: '',
+            errorMassage: ''
         }
     }
     
-    login = (user) => {
-        console.log("Hello Wrold Login")
-        alert("Console Run" +  user)
+    login = () => {
+        const email = this.state.email;
+        const pass = this.state.password;
+        firebase.auth().signInWithEmailAndPassword(email, pass).then(() => {
+            goHome()
+        }).catch(err => {
+            console.log("Error Code", err.code);
+            console.log("Error Message", err.message);
+            this.setState({errorMassage: err.massage});
+        })
     }
     render() {
         return (
             <View style={styles.container}>
                 <TextInput 
-                    placeholder="Enter your Name"
-                    onChangeText={username => this.setState({username})}
+                    placeholder="Enter your email"
+                    onChangeText={email => this.setState({email})}
                 />
                 
                 <TextInput 
@@ -32,13 +43,10 @@ class SignIn extends Component {
                 />
                 <Button 
                     title="Login"
-                    onPress={() => this.login(this.state.username)}
+                    onPress={this.login}
                 />
                 <Text>{
-                this.state.username
-                }</Text>
-                <Text>{
-                this.state.password
+                this.state.errorMassage
                 }</Text>
             </View>
         )

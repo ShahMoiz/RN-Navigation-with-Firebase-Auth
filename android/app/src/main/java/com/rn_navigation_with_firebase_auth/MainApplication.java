@@ -10,6 +10,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import io.invertase.firebase.auth.RNFirebaseAuthPackage; // Firebase Package
+
 import com.oblador.vectoricons.VectorIconsPackage; // for Vector Icons
 
 import com.reactnativenavigation.NavigationApplication; // for Navigation
@@ -41,7 +43,9 @@ public class MainApplication extends NavigationApplication {
                     // No need to add RnnPackage and MainReactPackage
                             return Arrays.<ReactPackage>asList(
                         // eg. new VectorIconsPackage()
-                                    new VectorIconsPackage()
+                                    new VectorIconsPackage(),
+                                    new RNFirebasePackage(),
+                                    new RNFirebaseAuthPackage()
                             );
         }
 
