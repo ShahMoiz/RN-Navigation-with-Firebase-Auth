@@ -2,15 +2,18 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import authScreen from './src/screens/authScreen/authScreen'
+import ProtectedScreen from './src/screens/mainTabs/protectedScreen/protectedScreen';
 export default class App extends Component{
+
   signIn = () => {
     authScreen('signIn', 'signUp');
   }
   signUp = () => {
     authScreen('signUp','signIn');
   }
-  goToProtected = () => {
-    alert("Protected page")
+  goToProtected = async () => {
+    // await 
+    ProtectedScreen()
   }
   render(){
     return(
@@ -60,9 +63,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  // signUp:{
-  //   width: '45%'
-  // },
   homeText: {
     fontSize: 50,
     width: '70%'

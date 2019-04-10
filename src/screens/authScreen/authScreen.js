@@ -10,10 +10,10 @@ const authScreen =(mainCompoName, secondryCompoName) => {
                 bottomTabs: {
                     children: [{
                         component: {
-                            name: mainCompoName,
-                            options: {
+                            name: mainCompoName || 'signIn',
+                            options: { 
                                 bottomTab: {
-                                    text: mainCompoName,
+                                    text: mainCompoName || 'Sign In',
                                     fontSize: 12,
                                     icon: source[0]
                                 }
@@ -22,10 +22,10 @@ const authScreen =(mainCompoName, secondryCompoName) => {
                     },
                     {
                         component: {
-                            name: secondryCompoName,
+                            name: secondryCompoName || 'signUp',
                             options: {
                                 bottomTab: {
-                                    text: secondryCompoName,
+                                    text: secondryCompoName || 'Sign Up',
                                     fontSize: 12,
                                     icon: source[1]
                                 }
