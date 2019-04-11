@@ -4,10 +4,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Navigation } from 'react-native-navigation';
 import firebase from 'react-native-firebase'
 import { USER_ID } from '../../../config'
-import goHome from '../../screens/mainTabs/mainTabs';
+import goHome from '../../screens/homeSreen/homeScreen';
+import Left_Arrow from './arrow-left.png' 
 // import console = require('console');
 
 export default class ProtectedComponent extends Component {
+    
     state = {
         errorMesage: ''
     }

@@ -1,10 +1,22 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import authScreen from './src/screens/authScreen/authScreen'
-import ProtectedScreen from './src/screens/mainTabs/protectedScreen/protectedScreen';
-import firebase from 'react-native-firebase'
+import firebase from 'react-native-firebase';
+import { Navigation } from 'react-native-navigation';
+
+import authScreen from './src/screens/authScreen/authScreen';
+import ProtectedScreen from './src/screens/protectedScreen/protectedScreen';
 export default class App extends Component{
+  
+  static get options() {
+    return {
+      topBar: {
+        title: {
+          text: 'Home'
+        },
+      }
+    };
+  }
 
   signIn = () => {
     authScreen('signIn', 'signUp');
@@ -12,7 +24,8 @@ export default class App extends Component{
   signUp = () => {
     authScreen('signUp','signIn');
   }
-  goToProtected = async () => {
+
+  goToProtected = () => {
     firebase.auth().onAuthStateChanged(user => {
       if(user){
         ProtectedScreen()
@@ -21,11 +34,12 @@ export default class App extends Component{
         authScreen('signUp','signIn');
       } 
     })
-    // ProtectedScreen()
   }
+
   render(){
     return(
       <View style={styles.homeComponent}>
+
         <View style={styles.homeAuthButtons}>
           <View 
               style={styles.authStyle}>
@@ -34,6 +48,7 @@ export default class App extends Component{
               title="sign In"
             />
           </View>
+
           <View 
               style={styles.authStyle}>
             <Button 
@@ -42,17 +57,18 @@ export default class App extends Component{
               color="red"
             />
           </View>
-          
         </View>
 
         <View style={styles.textContent}>
           <Icon name="home" size={75} style={styles.homeIcon}/>
           <Text style={styles.homeText}>Home Page</Text>
         </View>
+
         <Button 
-        onPress={this.goToProtected}
+          onPress={this.goToProtected}
           title="Go to Protected Page"
         />
+
       </View>
     )
   }
@@ -78,7 +94,6 @@ const styles = StyleSheet.create({
   homeIcon: {
     width: '30%'
   },
-  
   authStyle: {
     width: '45%',
     margin: 10

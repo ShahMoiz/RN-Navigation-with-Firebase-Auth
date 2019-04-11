@@ -8,17 +8,29 @@ const authScreen =(mainCompoName, secondryCompoName) => {
         Navigation.setRoot({
             root: {
                 bottomTabs: {
+                    id: 'authScreen',
                     children: [{
                         component: {
                             name: mainCompoName || 'signIn',
+                            
                             options: { 
                                 bottomTab: {
                                     text: mainCompoName || 'Sign In',
                                     fontSize: 12,
                                     icon: source[0]
+                                },
+                                
+                            },
+                            
+                        },
+                        options: {
+                            topbar: {
+                                title: {
+                                    text: 'Login'
                                 }
                             }
                         }
+                        
                     },
                     {
                         component: {
@@ -31,7 +43,8 @@ const authScreen =(mainCompoName, secondryCompoName) => {
                                 }
                             }
                         }
-                    }]
+                    },
+                ]
                 }
             }
         })
